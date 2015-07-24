@@ -120,7 +120,7 @@ function golfio_scripts() {
         
         // ADD MODERNIZER
         
-        wp_register_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array('jquery'), false, false);    
+        wp_register_script('modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array('jquery'), false, true);    
         wp_enqueue_script('modernizr');
         
         // REGISTER THEME FUNCTIONS
@@ -227,4 +227,107 @@ echo'
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <?php
+}
+
+remove_action('wp_head', 'rsd_link'); // Removes the Really Simple Discovery link
+remove_action('wp_head', 'wlwmanifest_link'); // Removes the Windows Live Writer link
+remove_action('wp_head', 'wp_generator'); // Removes the WordPress version
+remove_action('wp_head', 'start_post_rel_link'); // Removes the random post link
+remove_action('wp_head', 'index_rel_link'); // Removes the index page link
+remove_action('wp_head', 'adjacent_posts_rel_link'); // Removes the next and previous post links
+
+
+/*
+ * Hide "Products" in WooCommerce breadcrumb
+ */
+function woo_custom_filter_breadcrumbs_trail ( $trail ) {
+  foreach ( $trail as $k => $v ) {
+    if ( strtolower( strip_tags( $v ) ) == 'products' ) {
+      unset( $trail[$k] );
+      break;
+    }
+  }
+
+  return $trail;
+}
+
+add_filter( 'woo_breadcrumbs_trail', 'woo_custom_filter_breadcrumbs_trail', 10 );
+
+/**
+ * WooCommerce Extra Feature
+ * --------------------------
+ *
+ * Change product columns number on shop pages
+ *
+ */
+function woo_product_columns_frontend() {
+    global $woocommerce;
+
+    // Default Value also used for categories and sub_categories
+    $columns = 4;
+
+    // Product List
+    if ( is_product_category() ) :
+        $columns = 4;
+    endif;
+
+    //Related Products
+    if ( is_product() ) :
+        $columns = 2;
+    endif;
+
+    //Cross Sells
+    if ( is_checkout() ) :
+        $columns = 4;
+    endif;
+
+	return $columns;
+}
+add_filter('loop_shop_columns', 'woo_product_columns_frontend');
+
+// Change number of thumbnails per row in product galleries
+
+add_filter ( 'woocommerce_product_thumbnails_columns', 'xx_thumb_cols' );
+ function xx_thumb_cols() {
+     return 4; // .last class applied to every 4th thumbnail
+ }
+ 
+ // Change the add to cart text on single product pages
+ 
+ add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' );    // < 2.1
+
+function woo_custom_cart_button_text() {
+        return __( 'My Button Text', 'woocommerce' );
+}
+
+// Change number of upsells output
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_upsells', 15 );
+
+if ( ! function_exists( 'woocommerce_output_upsells' ) ) {
+	function woocommerce_output_upsells() {
+	    woocommerce_upsell_display( 4,4 ); // Display 4 products in rows of 4
+	}
+}
+
+// Customize Woocommerce Related Products Output
+
+if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
+    function woocommerce_output_related_products() {
+        woocommerce_related_products(4,4);   // Display 4 products in 4 columns
+    }
+}
+
+// Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
+add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+	ob_start();
+	?>
+	<a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo sprintf (_n( '%d item', '%d items', WC()->cart->cart_contents_count ), WC()->cart->cart_contents_count ); ?> - <?php echo WC()->cart->get_cart_total(); ?></a> 
+	<?php
+	
+	$fragments['a.cart-contents'] = ob_get_clean();
+	
+	return $fragments;
 }
