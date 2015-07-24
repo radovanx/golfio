@@ -237,68 +237,12 @@ remove_action('wp_head', 'index_rel_link'); // Removes the index page link
 remove_action('wp_head', 'adjacent_posts_rel_link'); // Removes the next and previous post links
 
 
-/*
- * Hide "Products" in WooCommerce breadcrumb
- */
-function woo_custom_filter_breadcrumbs_trail ( $trail ) {
-  foreach ( $trail as $k => $v ) {
-    if ( strtolower( strip_tags( $v ) ) == 'products' ) {
-      unset( $trail[$k] );
-      break;
-    }
-  }
-
-  return $trail;
-}
-
-add_filter( 'woo_breadcrumbs_trail', 'woo_custom_filter_breadcrumbs_trail', 10 );
-
-/**
- * WooCommerce Extra Feature
- * --------------------------
- *
- * Change product columns number on shop pages
- *
- */
-function woo_product_columns_frontend() {
-    global $woocommerce;
-
-    // Default Value also used for categories and sub_categories
-    $columns = 4;
-
-    // Product List
-    if ( is_product_category() ) :
-        $columns = 4;
-    endif;
-
-    //Related Products
-    if ( is_product() ) :
-        $columns = 2;
-    endif;
-
-    //Cross Sells
-    if ( is_checkout() ) :
-        $columns = 4;
-    endif;
-
-	return $columns;
-}
-add_filter('loop_shop_columns', 'woo_product_columns_frontend');
-
 // Change number of thumbnails per row in product galleries
 
 add_filter ( 'woocommerce_product_thumbnails_columns', 'xx_thumb_cols' );
  function xx_thumb_cols() {
      return 4; // .last class applied to every 4th thumbnail
  }
- 
- // Change the add to cart text on single product pages
- 
- add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' );    // < 2.1
-
-function woo_custom_cart_button_text() {
-        return __( 'My Button Text', 'woocommerce' );
-}
 
 // Change number of upsells output
 
@@ -331,3 +275,25 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	
 	return $fragments;
 }
+
+
+// ADD TAXONOMY IMAGES
+
+require_once("Tax-meta-class/Tax-meta-class.php");
+ 
+$config = array(
+   'id' => 'demo_meta_box',                         // meta box id, unique per meta box
+   'title' => 'Demo Meta Box',                      // meta box title
+   'pages' => array('categories'),                  // taxonomy name, accept categories, post_tag and custom taxonomies
+   'context' => 'normal',                           // where the meta box appear: normal (default), advanced, side; optional
+   'fields' => array(),                             // list of meta fields (can be added by field arrays)
+   'local_images' => false,                         // Use local or hosted images (meta box images for add/remove)
+   'use_with_theme' => true                         //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+);
+ 
+$my_meta = new Tax_Meta_Class($config); 
+ 
+$my_meta->addImage('image_field_id',array('name'=> 'Term Image '));
+
+$my_meta->Finish();
+
