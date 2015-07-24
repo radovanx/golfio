@@ -5,6 +5,16 @@
  * @package Golfio
  */
 
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Settings',
+		'menu_title'	=> 'Gofio',
+		'menu_slug' 	=> 'gofio-general-settings',
+		'redirect'		=> false
+	));
+}
+
 if ( ! function_exists( 'golfio_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -251,6 +261,14 @@ add_filter ( 'woocommerce_product_thumbnails_columns', 'xx_thumb_cols' );
  function xx_thumb_cols() {
      return 4; // .last class applied to every 4th thumbnail
  }
+ 
+ // Change number or products per row to 3
+add_filter('loop_shop_columns', 'loop_columns');
+if (!function_exists('loop_columns')) {
+	function loop_columns() {
+		return 3; // 3 products per row
+	}
+}
 
 // Change number of upsells output
 
@@ -259,7 +277,7 @@ add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_upse
 
 if ( ! function_exists( 'woocommerce_output_upsells' ) ) {
 	function woocommerce_output_upsells() {
-	    woocommerce_upsell_display( 4,4 ); // Display 4 products in rows of 4
+	    woocommerce_upsell_display( 3,3 ); // Display 4 products in rows of 4
 	}
 }
 
@@ -267,7 +285,7 @@ if ( ! function_exists( 'woocommerce_output_upsells' ) ) {
 
 if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
     function woocommerce_output_related_products() {
-        woocommerce_related_products(4,4);   // Display 4 products in 4 columns
+        woocommerce_related_products(3,3);   // Display 4 products in 4 columns
     }
 }
 
@@ -304,3 +322,8 @@ $my_meta = new Tax_Meta_Class($config);
 $my_meta->addImage('image_field_id',array('name'=> 'Term Image '));
 
 $my_meta->Finish();
+
+function remove_loop_button(){
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+}
+add_action('init','remove_loop_button');

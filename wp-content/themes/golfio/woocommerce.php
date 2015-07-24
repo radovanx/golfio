@@ -12,7 +12,7 @@
 get_header();
 ?>
 
-<div id="primary" class="content-area col-xs-12 col-md-8 col-md-push-4">
+<div id="primary" class="content-area col-xs-12">
     <main id="main" class="site-main" role="main">
 
         <?php woocommerce_content(); ?>
@@ -20,8 +20,8 @@ get_header();
     </main><!-- #main -->
 </div><!-- #primary -->
 
-<div id="secondary" class="widget-area col-xs-12 col-md-4 col-md-pull-8" role="complementary">
+<!-- <div id="secondary" class="widget-area col-xs-12 col-md-4 col-md-pull-8" role="complementary">
     <?php dynamic_sidebar( 'sidebar-shop' ); ?>
-</div>
+</div> -->
 
 <?php get_footer(); ?>

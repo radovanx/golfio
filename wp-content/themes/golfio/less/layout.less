@@ -1,13 +1,14 @@
-//Woocommerce recent and featured product on homepage
-#recent img, #featured img {
-    width: 100%;
+//Responsive image fix
+img {
+    max-width: 100%;
     height: auto;
     margin: 0 auto;
 }
 
+// Shop page products, Related products and Upsells in 3 columns
 
-// Related products and upsells in 4 columns
-
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product
 .woocommerce .related ul li.product,
 .woocommerce .related ul.products li.product,
 .woocommerce .upsells.products ul li.product,
@@ -20,9 +21,11 @@
     margin: 0 3.8% 2.992em 0;
     padding: 0;
     position: relative;
-    width: 22.05%;
+    width: 30.8%;
 }
 
+.woocommerce ul.products li.last,
+.woocommerce-page ul.products li.last
 .woocommerce .related ul li.product.last,
 .woocommerce .related ul.products li.product.last,
 .woocommerce .upsells.products ul li.product.last,
@@ -33,3 +36,166 @@
 .woocommerce-page .upsells.products ul.products li.product.last {
     margin-right: 0;
 }
+
+
+// TOP BAR
+
+.top-email {
+    text-align: right;
+}
+
+.top-cart, .top-account {
+    text-align: center;
+}
+
+.top-bar {
+    border-bottom: 1px solid @brand-success;
+    padding: 15px 0;
+    background: url('./img/pattern.png') top left repeat;
+    font-size: @font-size-large;
+    font-weight: 500;
+    .glyphicon {
+        margin-right:10px;
+    }
+}
+
+.site-branding {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    .glyphicon {
+        display: block;
+        clear: right;
+        &:before {
+            font-size: 30px;
+        }
+    }
+    .pull-down a {
+        display: block;
+        clear: left;
+    }
+}
+
+.top-user {color:@gray-light}
+.top-shop {color:@brand-success}
+
+.top-account a, .top-cart a {text-transform: uppercase; color: @gray-base; margin-top: 10px}
+
+.top-logo {
+    text-align: center;
+}
+
+#top-nav {
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+
+#menu-top-menu>li>a {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+/* Carousel Styles */
+
+.carousel-inner {
+    img {
+        width: 100%;
+    }
+    .item {
+        overflow: hidden;
+        max-height: 390px;
+    }
+}
+
+.carousel-control {
+    width: 0;
+    span {
+        &:before {
+            border: 3px solid #fff;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 22px;
+            padding: 10px 12px;
+        }
+    }
+}
+
+.carousel-control.left,
+.carousel-control.right {
+    .opacity(0.4);
+    background-image: none;
+    background-repeat: no-repeat;
+    text-shadow: none;
+}
+
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right, 
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin: -25px 0 0 0;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+    padding: 1px;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+    left: 25px;
+    
+}
+
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+    right: 25px;
+}
+
+.carousel-control.left:hover,
+.carousel-control.right:hover {
+    .opacity(1);
+}
+
+/* Carousel Header Styles */
+.header-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+}
+
+.header-text h2 {
+    font-size: 90px;
+    font-family: @font-family-serif;
+    margin: -50px 0 0 0;
+}
+
+
+// FRONTPAGE STYLES
+
+.front-content {
+    text-align: center;
+    margin: 70px 0;
+    font-size: @font-size-large;
+    font-weight: 300;
+}
+
+.call-to-action {
+    padding: 20px 70px;
+    text-transform: uppercase;
+    margin-top: 40px;
+}
+
+//Featured image
+#featured img {width:100%;}
+
+.frontpage-title {text-transform: uppercase; color: @gray-base;}

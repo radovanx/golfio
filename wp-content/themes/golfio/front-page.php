@@ -7,107 +7,112 @@
 get_header();
 ?>
 
-<div id="primary" class="content-area col-xs-12 col-md-8 col-md-push-4">
-    <main id="main" class="site-main" role="main">
+<!-- Carousel -->
 
-        This is a homepage
+<?php if (have_rows('slides', 'option')): ?>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <?php
+            $count = 0;
+            while (have_rows('slides', 'option')): the_row();
 
-        <section id="featured">
-
-            <h1>Featured</h1>
-
-            <div class="row">
+                // vars
+                $image = get_sub_field('slide');
+                $title = get_sub_field('title');
+                ?>
+                <div class="item <?php if ($count == 0) echo 'active'; ?>">
+                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
+                    <!-- Static Header -->
+                    <div class="header-text hidden-xs">
+                        <h2><?php echo $title; ?></h2>
+                    </div><!-- /header-text -->
+                </div>
 
                 <?php
-                $args = array(
-                    'post_type' => 'product',
-                    'meta_key' => '_featured',
-                    'meta_value' => 'yes',
-                    'posts_per_page' => 4
-                );
+                $count++;
+            endwhile;
+            ?>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
 
-                $featured_query = new WP_Query($args);
+<?php endif; ?>
 
-                if ($featured_query->have_posts()) :
+<!-- /carousel -->
 
-                    while ($featured_query->have_posts()) :
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-push-2 front-content">
+        <?php while (have_posts()) : the_post(); ?>
+            <?php the_content(); ?>
+        <?php endwhile; // End of the loop.   ?>
 
-                        $featured_query->the_post();
+        <?php
+        $link = get_field("button_link");
+        $text = get_field("button_text");
 
-                        $product = get_product($featured_query->post->ID);
-                        ?>
+        if ($link) {
+            echo '<a type="button" class="call-to-action btn btn-warning" href="'.$link.'">'.$text.'</a>';
+        } 
+        ?>       
 
-                        <div class="col-xs-6 cols-sm-4 col-md-3">    
+    </div>
+</div>
 
-                            <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+<section id="featured" class="row">
 
-                                <?php
-                                if (has_post_thumbnail($featured_query->post->ID))
-                                    echo get_the_post_thumbnail($featured_query->post->ID, 'shop_catalog');
-                                else
-                                    echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="65px" height="115px" />';
-                                ?>
+        <?php
+        $args = array(
+            'post_type' => 'product',
+            'meta_key' => '_featured',
+            'meta_value' => 'yes',
+            'posts_per_page' => 3
+        );
 
-                                <h3><?php the_title(); ?></h3>
+        $featured_query = new WP_Query($args);
 
-                                <span class="price"><?php echo $product->get_price_html(); ?></span>
+        if ($featured_query->have_posts()) :
 
-                            </a>
+            while ($featured_query->have_posts()) :
 
-                            <?php woocommerce_template_loop_add_to_cart($featured_query->post, $product); ?>
-                        </div><!-- col-xs-3 --> 
+                $featured_query->the_post();
+
+                $product = get_product($featured_query->post->ID);
+                ?>
+
+                <div class="col-xs-6 col-sm-4">    
+
+                    <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 
                         <?php
-                    endwhile;
+                        if (has_post_thumbnail($featured_query->post->ID))
+                            echo get_the_post_thumbnail($featured_query->post->ID, 'shop_catalog');
+                        else
+                            echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="65px" height="115px" />';
+                        ?>
 
-                endif;
+                        <h4 class="frontpage-title"><?php the_title(); ?></h4>
 
-                wp_reset_query(); // Remember to reset  
-                ?>
-            </div>
+                        <span class="front-price"><?php echo $product->get_price_html(); ?></span>
 
-        </section>
+                    </a>
 
-        <section id="recent">
-
-            <h1>Recently Added</h1>
-
-            <div class="row">
+                </div><!-- col-xs-3 --> 
 
                 <?php
-                $args = array('post_type' => 'product', 'stock' => 1, 'posts_per_page' => 4, 'orderby' => 'date', 'order' => 'DESC');
-                $loop = new WP_Query($args);
-                while ($loop->have_posts()) : $loop->the_post();
-                    global $product;
-                    ?>
+            endwhile;
 
-                    <div class="col-xs-6 cols-sm-4 col-md-3">    
+        endif;
 
-                        <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+        wp_reset_query(); // Remember to reset  
+        ?>
 
-                            <?php
-                            if (has_post_thumbnail($loop->post->ID))
-                                echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog');
-                            else
-                                echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="65px" height="115px" />';
-                            ?>
+</section>
 
-                            <h3><?php the_title(); ?></h3>
-
-                            <span class="price"><?php echo $product->get_price_html(); ?></span>
-
-                        </a>
-
-                        <?php woocommerce_template_loop_add_to_cart($loop->post, $product); ?>
-                    </div><!-- col-xs-3 -->
-                <?php endwhile; ?>
-                <?php wp_reset_query(); ?>
-
-            </div><!-- /row-fluid -->
-        </section><!-- /recent -->
-
-    </main><!-- #main -->
-</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
