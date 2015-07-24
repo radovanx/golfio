@@ -102,9 +102,17 @@ function golfio_widgets_init() {
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
 	) );
+        register_sidebar(array(
+		'name'=> esc_html__( 'Shop Sidebar', 'golfio' ),
+		'id' => 'sidebar-shop',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h2 class="offscreen">',
+		'after_title' => '</h2>',
+	));
 }
 add_action( 'widgets_init', 'golfio_widgets_init' );
 
@@ -296,4 +304,3 @@ $my_meta = new Tax_Meta_Class($config);
 $my_meta->addImage('image_field_id',array('name'=> 'Term Image '));
 
 $my_meta->Finish();
-
