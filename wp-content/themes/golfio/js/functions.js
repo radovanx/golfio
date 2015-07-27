@@ -47,6 +47,8 @@ jQuery(document).ready(function() {
             $('.pull-down').each(function () {
                 if ($(window).innerWidth() >= 768) {
                     $(this).css('margin-top', $(this).parent().height() - $(this).height());
+                } else {
+                    $(this).css('margin-top', '30px');
                 }
             });
         }
@@ -58,7 +60,6 @@ jQuery(document).ready(function() {
         fixHeader();
     });
 }(window.jQuery);
-
 
 
 jQuery(document).ready(function($) {

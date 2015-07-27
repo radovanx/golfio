@@ -56,6 +56,8 @@ img {
     font-weight: 500;
     .glyphicon {
         margin-right:10px;
+        font-size: 20px;
+        vertical-align: sub;
     }
 }
 
@@ -196,6 +198,275 @@ img {
 }
 
 //Featured image
-#featured img {width:100%;}
+#featured img {
+    width:100%;
+    border: 1px solid #ddd;
+    padding: 5px;
 
-.frontpage-title {text-transform: uppercase; color: @gray-base;}
+}
+
+.frontpage-title, .woocommerce ul.products li.product h3 {text-transform: uppercase; color: @gray-base; font-size:17px}
+
+// FOOTER STYLES
+
+footer {
+    background-color: @gray-lighter;
+    border-top: 1px solid #ddd;
+    margin-top: 80px;
+    padding-top: 40px;
+    }
+
+h3.footer-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.footer-widget{
+
+    .glyphicon {
+        vertical-align: bottom;
+        font-size: 24px;
+        margin-right: 20px;
+    }
+
+    ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        padding: 0 0 5px 0;
+        a {
+            color: #000;
+            font-weight: 300;
+        }
+    }
+}
+}
+
+.icons-cont {
+    float: left;
+    clear: both;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.footer-widget img {
+    float: left;
+    max-width: 150px;
+    height: auto;
+}
+
+.site-info {
+    text-align: center;
+    padding: 17px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 50px;
+}
+
+// PRODUCTS
+
+span.front-price, span.price {
+    font-size: 28px !important;
+    color: @brand-success;
+}
+
+
+.product-link {
+    overflow: auto;
+    display: block;
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+        img {
+            .opacity(0.8);
+            }
+    }
+}
+
+del {
+    font-size: 16px;
+    color: @brand-warning !important;
+    display: inline !important;
+}
+
+ins {
+    text-decoration: none;
+    font-weight: 400 !important;
+    display: inline !important;
+}
+
+
+// RECEPIES
+
+.recepty img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-bottom: 0px;
+}
+
+h2.recept-title {
+    font-size: 17px;
+    text-transform: uppercase;
+    min-height: 40px;
+    a {
+        color: @gray-base;
+    }
+}
+
+.recepie-more {margin-top: 10px}
+
+.recep-link:hover img {
+    .opacity(0.8);
+}
+
+.recepie-content {
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.recepie-image img, .woocommerce ul.products li.product a img, .attachment-shop_single {
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+.recepie-image img {border-bottom: 0px}
+
+h2.rece-title {
+    color: @brand-success;
+    margin: 0 0 40px 0;
+}
+
+.recepie-details {margin-top:40px}
+
+.timing {
+    margin: 0 0 20px 0;
+    overflow: hidden;
+    div {
+        text-align: center;
+        padding: 5px;
+        border: 1px solid #ddd;
+    }
+    .time {
+        color: @brand-success;
+        border-top: 0px;
+        font-size: 24px;
+    }
+}
+
+
+h1.page-title, h1.entry-title {
+    font-size: 36px;
+    color: #000;
+    margin: 0 0 30px 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-align: left;
+    &:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 100%;
+        height: 1px;
+        content: '\a0';
+        background-color: #ddd;
+      }
+}
+
+.entry-summary {
+    overflow: hidden;
+}
+
+
+.adder .qty {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    height: 60px;
+    border: 1px solid #cb6d61;
+    border-right: 0;
+    border-radius: 3px;
+    margin: 0;
+    width: 100% !important;
+}
+
+.adder div.quantity {
+    margin:0 !important;
+    float: left;
+    width: 30%;
+}
+
+.add-it {
+    height: 60px;
+    margin-left: -4px;
+    padding: 0;
+    width: 70%;
+}
+
+.row-no-padding {
+  margin-left: 0;
+  margin-right: 0;
+  [class*="col-"]:first-of-type {
+    padding-left: 0 !important;
+  }
+  [class*="col-"]:last-of-type {
+    padding-right: 0 !important;
+  }
+}
+
+p.price span {
+    font-size: 28px;
+    font-weight: 300;
+    color: #000;
+}
+
+span.amount {
+    font-weight: 500 !important;
+}
+
+.entry-summary p {font-weight:300}
+
+.recepty {
+    margin-top: 40px;
+}
+
+.in-product-recepie {
+    position: relative;
+    max-height: 245px;
+    overflow: hidden;
+    h2 {
+        position: absolute;
+        bottom: 15px;
+        left: 30px;
+        right: 30px;
+        margin: 0;
+        min-height: 0;
+        font-weight: 300;
+        a {
+            color: #fff;
+        }
+    }
+     img {
+        padding:0;
+        border: 0px;
+    }
+}
+
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button, input#place_order {
+    background-color: @brand-warning;
+    border-color: #c55b4e;
+    text-transform: uppercase;
+    padding: 20px 40px;
+    width: auto !important;
+    display: inline-block;
+    &:hover {
+        background-color: #bb4c3e;
+        border-color: #a04135;
+    }
+}

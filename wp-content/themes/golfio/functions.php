@@ -123,6 +123,22 @@ function golfio_widgets_init() {
 		'before_title' => '<h2 class="offscreen">',
 		'after_title' => '</h2>',
 	));
+         register_sidebar(array(
+		'name'=> esc_html__( 'Footer 1', 'golfio' ),
+		'id' => 'footer-1',
+		'before_widget' => '<div class="col-xs-12 col-sm-3 footer-widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="footer-title">',
+		'after_title' => '</h3>',
+	));
+          register_sidebar(array(
+		'name'=> esc_html__( 'Footer 2', 'golfio' ),
+		'id' => 'footer-2',
+		'before_widget' => '<div class="col-xs-12 col-sm-3 footer-widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="footer-title">',
+		'after_title' => '</h3>',
+	));
 }
 add_action( 'widgets_init', 'golfio_widgets_init' );
 
@@ -144,11 +160,6 @@ function golfio_scripts() {
         // REGISTER THEME FUNCTIONS
         
         wp_enqueue_script( 'golfio-functions', get_template_directory_uri() . '/js/functions.js', array('jquery'), '', true );
-        
-        // ADD FONT AWESOME
-        
-        wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css', array(), null, 'all');
-        wp_enqueue_style('font-awesome');
         
         // ADD FLEXISLIDER
         
@@ -197,54 +208,14 @@ function woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
 
-// Remove woocommerce wrapper
 
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
-
-// Add custom woocommerce wrapper
-
-add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
-add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
-
-function my_theme_wrapper_start() {
-  echo '<section id="main">';
-}
-
-function my_theme_wrapper_end() {
-  echo '</section>';
-}
 
 // Register Custom Navigation Walker
 require_once('wp_bootstrap_navwalker.php');
 
-// Woocommerce social share buttons 
-
-add_action('woocommerce_share','wooshare');
-function wooshare(){
-echo'
-<div class="fb-like" data-href="'.get_permalink().'" data-layout="box_count" data-send="false" data-width="100" data-show-faces="true" style="display:inline"></div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="bryanheadrick">Tweet</a>
-<g:plusone size="tall"></g:plusone>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<a href="http://pinterest.com/pin/create/button/?url='. urlencode(get_permalink()).'&media='.urlencode(wp_get_attachment_url( get_post_thumbnail_id() )).'&description='.apply_filters( 'woocommerce_short_description', $post->post_excerpt ).'" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
-<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>';?>
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=281787978603249";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<?php
+add_action( 'woocommerce_share', 'woocommerce_social_share_icons', 10 );
+function woocommerce_social_share_icons() {
+        echo do_shortcode('[ssba]');
 }
 
 remove_action('wp_head', 'rsd_link'); // Removes the Really Simple Discovery link
@@ -303,27 +274,99 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 }
 
 
-// ADD TAXONOMY IMAGES
+// ADD RECEPTY
 
-require_once("Tax-meta-class/Tax-meta-class.php");
- 
-$config = array(
-   'id' => 'demo_meta_box',                         // meta box id, unique per meta box
-   'title' => 'Demo Meta Box',                      // meta box title
-   'pages' => array('categories'),                  // taxonomy name, accept categories, post_tag and custom taxonomies
-   'context' => 'normal',                           // where the meta box appear: normal (default), advanced, side; optional
-   'fields' => array(),                             // list of meta fields (can be added by field arrays)
-   'local_images' => false,                         // Use local or hosted images (meta box images for add/remove)
-   'use_with_theme' => true                         //change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
-);
- 
-$my_meta = new Tax_Meta_Class($config); 
- 
-$my_meta->addImage('image_field_id',array('name'=> 'Term Image '));
+// Register Custom Post Type
+function recepty_post_type() {
 
-$my_meta->Finish();
+	$labels = array(
+		'name'                => _x( 'Recepty', 'Post Type General Name', 'golfio' ),
+		'singular_name'       => _x( 'Recept', 'Post Type Singular Name', 'golfio' ),
+		'menu_name'           => __( 'Recepty', 'golfio' ),
+		'name_admin_bar'      => __( 'Recepty', 'golfio' ),
+		'parent_item_colon'   => __( 'Parent Item:', 'golfio' ),
+		'all_items'           => __( 'All Items', 'golfio' ),
+		'add_new_item'        => __( 'Add New Item', 'golfio' ),
+		'add_new'             => __( 'Add New', 'golfio' ),
+		'new_item'            => __( 'New Item', 'golfio' ),
+		'edit_item'           => __( 'Edit Item', 'golfio' ),
+		'update_item'         => __( 'Update Item', 'golfio' ),
+		'view_item'           => __( 'View Item', 'golfio' ),
+		'search_items'        => __( 'Search Item', 'golfio' ),
+		'not_found'           => __( 'Not found', 'golfio' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'golfio' ),
+	);
+	$args = array(
+		'label'               => __( 'recepty', 'golfio' ),
+		'description'         => __( 'Recepty', 'golfio' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'author', 'thumbnail', ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+                'menu_icon'           => 'dashicons-book',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => true,		
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'recepty', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'recepty_post_type', 0 );
+
+if(!get_option("medium_crop"))
+    add_option("medium_crop", "1");
+else
+    update_option("medium_crop", "1");
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10, 2);
+
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+
+function woo_remove_product_tabs( $tabs ) {
+
+    unset( $tabs['description'] );      	// Remove the description tab
+    unset( $tabs['reviews'] ); 			// Remove the reviews tab
+    unset( $tabs['additional_information'] );  	// Remove the additional information tab
+
+    return $tabs;
+
+}
+
+/*
+ * wc_remove_related_products
+ * 
+ * Clear the query arguments for related products so none show.
+ * Add this code to your theme functions.php file.  
+ */
+function wc_remove_related_products( $args ) {
+	return array();
+}
+add_filter('woocommerce_related_products_args','wc_remove_related_products', 10); 
 
 function remove_loop_button(){
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 }
 add_action('init','remove_loop_button');
+
+add_filter('woocommerce_checkout_fields', 'addBootstrapToCheckoutFields' );
+function addBootstrapToCheckoutFields($fields) {
+    foreach ($fields as &$fieldset) {
+        foreach ($fieldset as &$field) {
+            // if you want to add the form-group class around the label and the input
+            $field['class'][] = 'form-group'; 
+
+            // add form-control to the actual input
+            $field['input_class'][] = 'form-control';
+        }
+    }
+    return $fields;
+}

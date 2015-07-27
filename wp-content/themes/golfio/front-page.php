@@ -47,71 +47,71 @@ get_header();
 
 <!-- /carousel -->
 
-<div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-push-2 front-content">
-        <?php while (have_posts()) : the_post(); ?>
-            <?php the_content(); ?>
-        <?php endwhile; // End of the loop.   ?>
+<div class="col-xs-12 col-sm-8 col-sm-push-2 front-content">
+    <?php while (have_posts()) : the_post(); ?>
+        <?php the_content(); ?>
+    <?php endwhile; // End of the loop.   ?>
 
-        <?php
-        $link = get_field("button_link");
-        $text = get_field("button_text");
+    <?php
+    $link = get_field("button_link");
+    $text = get_field("button_text");
 
-        if ($link) {
-            echo '<a type="button" class="call-to-action btn btn-warning" href="'.$link.'">'.$text.'</a>';
-        } 
-        ?>       
+    if ($link) {
+        echo '<a type="button" class="call-to-action btn btn-warning" href="' . $link . '">' . $text . '</a>';
+    }
+    ?>       
 
-    </div>
 </div>
 
-<section id="featured" class="row">
+<div class="clearfix"></div>
 
-        <?php
-        $args = array(
-            'post_type' => 'product',
-            'meta_key' => '_featured',
-            'meta_value' => 'yes',
-            'posts_per_page' => 3
-        );
+<section id="featured">
 
-        $featured_query = new WP_Query($args);
+    <?php
+    $args = array(
+        'post_type' => 'product',
+        'meta_key' => '_featured',
+        'meta_value' => 'yes',
+        'posts_per_page' => 3
+    );
 
-        if ($featured_query->have_posts()) :
+    $featured_query = new WP_Query($args);
 
-            while ($featured_query->have_posts()) :
+    if ($featured_query->have_posts()) :
 
-                $featured_query->the_post();
+        while ($featured_query->have_posts()) :
 
-                $product = get_product($featured_query->post->ID);
-                ?>
+            $featured_query->the_post();
 
-                <div class="col-xs-6 col-sm-4">    
+            $product = get_product($featured_query->post->ID);
+            ?>
 
-                    <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+            <div class="col-xs-6 col-sm-4">    
 
-                        <?php
-                        if (has_post_thumbnail($featured_query->post->ID))
-                            echo get_the_post_thumbnail($featured_query->post->ID, 'shop_catalog');
-                        else
-                            echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="65px" height="115px" />';
-                        ?>
+                <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="product-link">
 
-                        <h4 class="frontpage-title"><?php the_title(); ?></h4>
+                    <?php
+                    if (has_post_thumbnail($featured_query->post->ID))
+                        echo get_the_post_thumbnail($featured_query->post->ID, 'shop_catalog');
+                    else
+                        echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="65px" height="115px" />';
+                    ?>
 
-                        <span class="front-price"><?php echo $product->get_price_html(); ?></span>
+                    <h4 class="frontpage-title"><?php the_title(); ?></h4>
 
-                    </a>
+                    <span class="front-price"><?php echo $product->get_price_html(); ?></span>
 
-                </div><!-- col-xs-3 --> 
+                </a>
 
-                <?php
-            endwhile;
+            </div><!-- col-xs-3 --> 
 
-        endif;
+            <?php
+        endwhile;
 
-        wp_reset_query(); // Remember to reset  
-        ?>
+    endif;
+
+    wp_reset_query(); // Remember to reset  
+    ?>
 
 </section>
 

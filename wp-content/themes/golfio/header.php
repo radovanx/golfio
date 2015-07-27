@@ -59,32 +59,32 @@
                 </div><!-- .site-branding -->
 
                 <nav class="navbar navbar-default container" role="navigation" id="top-nav">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
-                        </div>
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
+                    </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
 
-                        <div class="collapse navbar-collapse navbar-ex1-collapse">
-                            <?php
-                            wp_nav_menu(array(
-                                'theme_location' => 'primary',
-                                'depth' => 2,
-                                'container' => false,
-                                'menu_class' => 'nav navbar-nav',
-                                'fallback_cb' => 'wp_page_menu',
-                                //Process nav menu using our custom nav walker
-                                'walker' => new wp_bootstrap_navwalker())
-                            );
-                            ?>
-                        </div><!-- /.navbar-collapse --> 
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'primary',
+                            'depth' => 2,
+                            'container' => false,
+                            'menu_class' => 'nav navbar-nav',
+                            'fallback_cb' => 'wp_page_menu',
+                            //Process nav menu using our custom nav walker
+                            'walker' => new wp_bootstrap_navwalker())
+                        );
+                        ?>
+                    </div><!-- /.navbar-collapse --> 
                 </nav>	
 
 
@@ -92,3 +92,11 @@
 
             <div id="content" class="site-content container">
                 <div class="row">
+
+                    <div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+                        <?php
+                        if (function_exists('bcn_display')) {
+                            bcn_display();
+                        }
+                        ?>
+                    </div>
