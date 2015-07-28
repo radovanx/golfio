@@ -567,12 +567,15 @@ img{width:100%}.carousel-inner
 .item{overflow:hidden;max-height:390px}.carousel-control{width:0}.carousel-control span:before{border:3px
 solid #fff;border-radius:50%;line-height:50px;font-size:22px;padding:10px
 12px}.carousel-control.left,.carousel-control.right{filter:alpha(opacity=40);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";filter:alpha(opacity=(40));opacity:.4;background-image:none;background-repeat:no-repeat;text-shadow:none}.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right,.carousel-control .icon-prev,.carousel-control .icon-next{position:absolute;top:50%;z-index:5;display:inline-block;margin:-25px 0 0 0;overflow:hidden;width:auto;height:auto;padding:1px}.carousel-control .glyphicon-chevron-left,.carousel-control .icon-prev{left:25px}.carousel-control .glyphicon-chevron-right,.carousel-control .icon-next{right:25px}.carousel-control.left:hover,.carousel-control.right:hover{filter:alpha(opacity=100);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter:alpha(opacity=(100));opacity:1}.header-text{position:absolute;top:50%;left:0;right:0;text-align:center;width:100%;color:#fff}.header-text
-h2{font-size:90px;font-family:'Dynalight',cursive;margin:-50px 0 0 0}.front-content{text-align:center;margin:70px
-0;font-size:17px;font-weight:300}.call-to-action{padding:20px
+h2{font-size:90px;font-family:'Dynalight',cursive;margin:-50px 0 0 0}.front-content{text-align:center;margin:40px
+0 70px 0;font-size:17px;font-weight:300}.call-to-action{padding:20px
 70px;text-transform:uppercase;margin-top:40px}#featured
 img{width:100%;border:1px
 solid #ddd;padding:5px}.frontpage-title,.woocommerce ul.products li.product
-h3{text-transform:uppercase;color:#000;font-size:17px}footer{background-color:#f4f4f4;border-top:1px solid #ddd;margin-top:80px;padding-top:40px}h3.footer-title{font-size:14px;text-transform:uppercase;font-weight:500;margin-bottom:30px}.footer-widget
+h3{text-transform:uppercase;color:#000;font-size:17px}ul.category-list{list-style:none;margin:40px
+0 0 0;padding:0;text-align:center}ul.category-list
+li{display:inline-block}ul.category-list li
+a{margin-right:10px}footer{background-color:#f4f4f4;border-top:1px solid #ddd;margin-top:80px;padding-top:40px}h3.footer-title{font-size:14px;text-transform:uppercase;font-weight:500;margin-bottom:30px}.footer-widget
 .glyphicon{vertical-align:bottom;font-size:24px;margin-right:20px}.footer-widget
 ul{list-style:none;margin:0;padding:0}.footer-widget ul
 li{padding:0
@@ -593,7 +596,7 @@ img{border-bottom:0}h2.rece-title{color:#7ea940;margin:0
 div{text-align:center;padding:5px;border:1px
 solid #ddd}.timing
 .time{color:#7ea940;border-top:0;font-size:24px}h1.page-title,h1.entry-title{font-size:36px;color:#000;margin:0
-0 30px 0;position:relative;z-index:1;overflow:hidden;text-align:left}h1.page-title:after,h1.entry-title:after{position:absolute;top:51%;overflow:hidden;width:100%;height:1px;content:'\a0';background-color:#ddd}.entry-summary{overflow:hidden}.adder
+0 30px 0;position:relative;z-index:1;overflow:hidden;text-align:left;line-height:inherit}h1.page-title:after,h1.entry-title:after{position:absolute;top:51%;overflow:hidden;width:100%;height:1px;content:'\a0';background-color:#ddd}.entry-summary{overflow:hidden}.adder
 .qty{text-align:center;font-size:18px;padding:10px;height:60px;border:1px
 solid #cb6d61;border-right:0;border-radius:3px;margin:0;width:100% !important}.adder
 div.quantity{margin:0
@@ -602,7 +605,12 @@ span{font-size:28px;font-weight:300;color:#000}span.amount{font-weight:500 !impo
 p{font-weight:300}.recepty{margin-top:40px}.in-product-recepie{position:relative;max-height:245px;overflow:hidden}.in-product-recepie
 h2{position:absolute;bottom:15px;left:30px;right:30px;margin:0;min-height:0;font-weight:300}.in-product-recepie h2
 a{color:#fff}.in-product-recepie
-img{padding:0;border:0}.current_page_parent{background-color:#719839}.navbar-default .navbar-toggle{border-color:#fff}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:transparent}.navbar-default .navbar-toggle .icon-bar{background-color:#fff}.breadcrumbs{margin-bottom:20px;margin-left:15px}.post-navigation{overflow:hidden;margin-top:40px;text-transform:uppercase}.post-navigation div:nth-of-type(2){text-align:right}.post-navigation
+img{padding:0;border:0}.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,input#place_order{background-color:#cb6d61;border-color:#c55b4e;text-transform:uppercase;padding:20px
+40px;width:auto !important;display:inline-block}.woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,input#place_order:hover{background-color:#bb4c3e;border-color:#a04135}a.select2-choice{padding:3px
+0 4px 8px !important;height:auto !important;background:none !important}.country_select{padding:0;border:0}select.orderby{background:none !important}td.actions{padding:10px
+!important}input#coupon_code{border-radius:3px;margin-right:-5px;padding:6px
+12px 1px 12px;width:auto !important;white-space:nowrap;line-height:1;vertical-align:middle}.woocommerce-cart .cart-collaterals .cart_totals
+table{width:100%}.current_page_parent{background-color:#719839}.navbar-default .navbar-toggle{border-color:#fff}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:transparent}.navbar-default .navbar-toggle .icon-bar{background-color:#fff}.breadcrumbs{margin-bottom:20px;margin-left:15px}.post-navigation{overflow:hidden;margin-top:40px;text-transform:uppercase}.post-navigation div:nth-of-type(2){text-align:right}.post-navigation
 a{color:#000}@media (min-width:767px){.skip-link{display:none}.navbar .navbar-nav{display:inline-block;float:none;vertical-align:top}.navbar .navbar-collapse{text-align:center}.navbar-default .navbar-brand{display:none}}@media (max-width:767px){.top-bar{font-size:12px}.site-branding{margin-bottom:40px}.footer-widget{text-align:center;margin-bottom:20px}.footer-widget
 img{text-align:center;margin:0
 auto;float:none}.icons-cont{float:none}a.skip-link{text-align:center;width:100%;display:block;margin:7px

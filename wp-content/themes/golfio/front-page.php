@@ -47,6 +47,23 @@ get_header();
 
 <!-- /carousel -->
 
+<div class="col-xs-12 col-sm-8 col-sm-push-2">	
+    <?php
+    $wcatTerms = get_terms('product_cat', array('hide_empty' => 0, 'orderby' => 'ASC', 'parent' => 0)); 
+    echo '<ul class="category-list">';
+    foreach ($wcatTerms as $wcatTerm) :
+        $wthumbnail_id = get_woocommerce_term_meta($wcatTerm->term_id, 'thumbnail_id', true);
+        $wimage = wp_get_attachment_url($wthumbnail_id);
+        ?>
+            <li>
+                <a href="<?php echo get_term_link($wcatTerm->slug, $wcatTerm->taxonomy); ?>" class="btn btn-success"><?php echo $wcatTerm->name; ?></a>
+            </li>       
+        <?php
+    endforeach;
+    echo '</ul>';
+    ?>
+</div>
+
 <div class="col-xs-12 col-sm-8 col-sm-push-2 front-content">
     <?php while (have_posts()) : the_post(); ?>
         <?php the_content(); ?>

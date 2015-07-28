@@ -186,7 +186,7 @@ img {
 
 .front-content {
     text-align: center;
-    margin: 70px 0;
+    margin: 40px 0 70px 0;
     font-size: @font-size-large;
     font-weight: 300;
 }
@@ -206,6 +206,19 @@ img {
 }
 
 .frontpage-title, .woocommerce ul.products li.product h3 {text-transform: uppercase; color: @gray-base; font-size:17px}
+
+ul.category-list {
+    list-style: none;
+    margin: 40px 0 0 0;
+    padding: 0;
+    text-align: center;
+    li {
+        display: inline-block;
+        a {
+            margin-right: 10px;
+            }
+    }
+}
 
 // FOOTER STYLES
 
@@ -368,6 +381,7 @@ h1.page-title, h1.entry-title {
     z-index: 1;
     overflow: hidden;
     text-align: left;
+    line-height: inherit;
     &:after {
         position: absolute;
         top: 51%;
@@ -469,4 +483,44 @@ span.amount {
         background-color: #bb4c3e;
         border-color: #a04135;
     }
+}
+
+
+
+a.select2-choice {
+    padding: 3px 0 4px 8px !important;
+    height: auto !important;
+    background: none !important;
+}
+
+.country_select {
+    padding: 0;
+    border: 0px;
+}
+
+select.orderby {
+    background: none !important;
+}
+
+td.actions {
+    padding: 10px !important;
+}
+
+input#coupon_code {
+    border-radius: 3px;
+    margin-right: -5px;
+    padding: 6px 12px 1px 12px;
+    width: auto !important;
+    white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.woocommerce-cart .cart-collaterals .cart_totals table {width:100%}
+
+.woocommerce ul#shipping_method li {
+    margin: 0;
+    padding: .25em 0 .25em 0;
+    text-indent: 0;
+    list-style: none;
 }

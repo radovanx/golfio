@@ -344,8 +344,7 @@ function woo_remove_product_tabs( $tabs ) {
 /*
  * wc_remove_related_products
  * 
- * Clear the query arguments for related products so none show.
- * Add this code to your theme functions.php file.  
+ * Clear the query arguments for related products so none show
  */
 function wc_remove_related_products( $args ) {
 	return array();
@@ -358,6 +357,7 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_ad
 add_action('init','remove_loop_button');
 
 add_filter('woocommerce_checkout_fields', 'addBootstrapToCheckoutFields' );
+
 function addBootstrapToCheckoutFields($fields) {
     foreach ($fields as &$fieldset) {
         foreach ($fieldset as &$field) {
@@ -368,5 +368,22 @@ function addBootstrapToCheckoutFields($fields) {
             $field['input_class'][] = 'form-control';
         }
     }
+    return $fields;
+}
+
+
+// Hook in
+add_filter( 'woocommerce_billing_fields', 'custom_override_billing_fields' );
+add_filter( 'woocommerce_shipping_fields', 'custom_override_billing_fields' );
+
+// Our hooked in function – $fields is passed via the filter!
+function custom_override_billing_fields( $fields ) {
+    foreach ($fields as &$field) {
+            // if you want to add the form-group class around the label and the input
+            $field['class'][] = 'form-group'; 
+
+            // add form-control to the actual input
+            $field['input_class'][] = 'form-control';
+        }
     return $fields;
 }

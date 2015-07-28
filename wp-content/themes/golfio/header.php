@@ -93,6 +93,7 @@
             <div id="content" class="site-content container">
                 <div class="row">
 
+                    <?php if (!is_home() && !is_front_page()) { ?>
                     <div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
                         <?php
                         if (function_exists('bcn_display')) {
@@ -100,3 +101,4 @@
                         }
                         ?>
                     </div>
+                    <?php } ?>
