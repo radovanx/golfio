@@ -20,7 +20,7 @@
     <body <?php body_class(); ?>>
         <div id="page" class="hfeed site">
 
-            <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'golfio'); ?></a>     
+<!--            <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'golfio'); ?></a>     -->
 
             <header id="masthead" class="site-header" role="banner">
                 <div class="top-bar container-fluid">
@@ -44,16 +44,16 @@
                         <div class="col-xs-6 col-sm-4 col-sm-pull-4 top-account pull-down">
                             <?php if (is_user_logged_in()) { ?>
                                 <span class="glyphicon glyphicon-user top-user"></span>
-                                <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" title="<?php _e('My Account', 'woothemes'); ?>"><?php _e('My Account', 'woothemes'); ?></a>
+                                <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" title="<?php _e('Můj účet', 'woothemes'); ?>"><?php _e('Můj účet', 'woothemes'); ?></a>
                             <?php } else {
                                 ?>
                                 <span class="glyphicon glyphicon-user top-user"></span>
-                                <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" title="<?php _e('Login / Register', 'woothemes'); ?>"><?php _e('Login / Register', 'woothemes'); ?></a>
+                                <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>" title="<?php _e('Přihlášení / Registrace', 'woothemes'); ?>"><?php _e('Přihlášení / Registrace', 'woothemes'); ?></a>
                             <?php } ?>
                         </div>
                         <div class="col-xs-6 col-sm-4 top-cart pull-down">
                             <span class="glyphicon glyphicon-shopping-cart top-shop"></span>
-                            <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart'); ?>"><?php echo sprintf(_n('%d item', '%d items', WC()->cart->cart_contents_count), WC()->cart->cart_contents_count); ?> - <?php echo WC()->cart->get_cart_total(); ?></a>
+                            <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart'); ?>"><?php echo sprintf(_n('%d produkt', '%d produkty', WC()->cart->cart_contents_count), WC()->cart->cart_contents_count); ?> - <?php echo WC()->cart->get_cart_total(); ?></a>
                         </div>
                     </div>
                 </div><!-- .site-branding -->
@@ -62,7 +62,7 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Toggle navigation</span>
+                            <span class="sr-only">Menu</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
