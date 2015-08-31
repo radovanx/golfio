@@ -268,7 +268,7 @@ h3.footer-title {
 
 .footer-widget img {
     float: left;
-    max-width: 150px;
+    max-width: 90%;
     height: auto;
 }
 
@@ -533,4 +533,19 @@ a {
 a:hover, a:focus {
     color: #567f1a;
     text-decoration: underline;
+}
+
+
+li.outofstock:before {
+    content: 'Není skladem';
+    position: absolute;
+    display: block;
+    padding: 5px 10px;
+    background-color: @brand-warning;
+    border-bottom-left-radius: 3px;
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    right: 6px;
+    top: 6px;
 }
