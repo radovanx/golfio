@@ -62,8 +62,8 @@ img {
 }
 
 .site-branding {
-    margin-top: 40px;
-    margin-bottom: 80px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     .glyphicon {
         display: block;
         clear: right;
@@ -473,15 +473,15 @@ span.amount {
 }
 
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, input#place_order {
-    background-color: @brand-warning;
-    border-color: #c55b4e;
+    background-color: @brand-success;
+    border-color: @brand-success;
     text-transform: uppercase;
     padding: 20px 40px;
     width: auto !important;
     display: inline-block;
     &:hover {
-        background-color: #bb4c3e;
-        border-color: #a04135;
+        background-color: #6e9931;
+        border-color: #6e9931;
     }
 }
 
@@ -548,4 +548,38 @@ li.outofstock:before {
     text-transform: uppercase;
     right: 6px;
     top: 6px;
+}
+
+
+.btn-warning {
+    background-color: @brand-info;
+    border-color: @brand-info;
+}
+.btn-warning:hover {
+    background-color: @brand-info;
+    border-color: @brand-info;
+}
+.front-content-button {
+    margin-top: 5px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.front-content {
+    margin-bottom: 10px;
+}
+.front-content-button a {
+    margin-top: 5px;
+}
+#menu-side-menu .current_page_parent {
+    background: none;
+}
+
+#secondary .nav li a {
+    font-weight: bold;
+    padding: 10px 15px 10px 0;
+    font-size: 16px;
+}
+
+div#secondary {
+    margin-top: 15px;
 }
